@@ -1,7 +1,7 @@
 FROM docker
 
+RUN apk add --no-cache docker-compose bash
+
 COPY ./docker-scripts/ /docker-scripts/
 
-RUN apk add --no-cache docker-compose
-
-ENTRYPOINT /bin/bash
+CMD bash /docker-scripts/docker-entrypoint.sh

@@ -4,17 +4,17 @@
 # $2 events参数
 # $3 执行命令
 
-
-function fifo_read{
-    read one_line < $path
-    $3
+command=$3
+function fifo_read (){
+    read one_line < "$1";
+    $command
     sleep 1;
-    fifo_read &
+    fifo_read $1 &
 }
 
 path=/tmp/fifo/$1
 mkdir -p /tmp/fifo
 mkfifo $path
 
-fifo_read &
-docker events $2 >& $path
+fifo_read $path &
+eval "docker events $2" >& $path
