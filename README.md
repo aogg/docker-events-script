@@ -1,6 +1,12 @@
 # docker-events-script
 根据docker events事件执行指定脚本
 
+hub.docker.com
+https://hub.docker.com/r/adockero/events-script
+
+
+[![events-script](http://dockeri.co/image/adockero/events-script)](https://hub.docker.com/r/adockero/events-script)
+
 # 使用
 
 ## 启动容器
