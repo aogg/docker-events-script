@@ -12,7 +12,10 @@ https://hub.docker.com/r/adockero/events-script
 ## 启动容器
 ```bash
 // 简单使用，自带根据network事件执行nginx名称的容器重启配置
-docker run --restart=always -d -v /var/run/docker.sock:/var/run/docker.sock --privileged --name events-script adockero/events-script 
+docker run --restart=always -d --privileged \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  --name events-script \
+  adockero/events-script 
 ```
 
 
