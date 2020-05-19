@@ -7,7 +7,7 @@
 command=$3
 function fifo_read (){
     read one_line < "$1";
-    $command
+    eval $command
     sleep 1;
     fifo_read $1 &
 }
