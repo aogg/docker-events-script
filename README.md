@@ -23,3 +23,9 @@ docker run --restart=always -d --privileged \
 ```bash
 docker run -i --rm --network host nginx ls
 ```
+
+
+
+
+# ini配置文件
+> docker-scripts/events-script.ini文件
