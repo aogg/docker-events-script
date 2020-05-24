@@ -24,8 +24,24 @@ docker run --restart=always -d --privileged \
 docker run -i --rm --network host nginx ls
 ```
 
-
+## 查看执行日志
+```bash
+docker logs -f adockero/events-script
+```
 
 
 # ini配置文件
 > docker-scripts/events-script.ini文件
+
+如下默认nginx重读配置的配置  
+```ini
+[nginxReload]
+args='-f "type=network" -f "event=connect"'
+command='docker exec -i nginx nginx -t && docker exec -i nginx nginx -s reload'
+```
+
+## 自定义事件脚本
+1、***[test]***头必须英文无空格  
+2、只有两个配置参数。执行配置脚本是***docker-scripts/fifo_event.sh***
+3、***args***是docker events的命令参数
+4、***command***是事件触发时只需的脚本，可以使用docker命令，多个命令用&&
