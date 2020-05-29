@@ -42,7 +42,7 @@ command='sleep 2 && docker exec -i nginx nginx -t && docker exec -i nginx nginx 
 
 ## 自定义事件脚本
 1、***[test]***头必须英文无空格  
-2、只有两个配置参数。执行配置脚本是***docker-scripts/fifo_event.sh***
-3、***args***是docker events的命令参数
-4、***command***是事件触发时只需的脚本，可以使用docker命令，多个命令用&&
-5、如果是一个容器重新创建，就需要sleep等待容器能联通后在重启nginx
+2、只有两个配置参数。执行配置脚本是***docker-scripts/fifo_event.sh***  
+3、***args***是docker events的命令参数  
+4、***command***是事件触发时只需的脚本，可以使用docker命令，多个命令用&&  
+5、如果是一个容器重新创建，就需要sleep等待容器能联通后在重启nginx  
