@@ -25,9 +25,19 @@ docker run --restart=always -d --privileged \
 docker run -i --rm --network host nginx ls
 ```
 
-> 一键式测试命令
+> 一键组合测试命令--常规
 ```bash
-docker rm -f events-script && \
+docker rm -f events-script || \
+docker run --restart=always -d --privileged -v /var/run/docker.sock:/var/run/docker.sock --name events-script adockero/events-script && \
+docker run -i --rm --network host nginx ls && \
+docker logs events-script && \
+docker rm -f events-script
+```
+
+> 一键组合测试命令--带pull
+```bash
+docker rm -f events-script || \
+docker pull adockero/events-script && \
 docker run --restart=always -d --privileged -v /var/run/docker.sock:/var/run/docker.sock --name events-script adockero/events-script && \
 docker run -i --rm --network host nginx ls && \
 docker logs events-script && \
