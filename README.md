@@ -20,8 +20,18 @@ docker run --restart=always -d --privileged \
 
 
 ## 测试
+> 启动容器触发network事件
 ```bash
 docker run -i --rm --network host nginx ls
+```
+
+> 一键式测试命令
+```bash
+docker rm -f events-script && \
+docker run --restart=always -d --privileged -v /var/run/docker.sock:/var/run/docker.sock --name events-script adockero/events-script && \
+docker run -i --rm --network host nginx ls && \
+docker logs events-script && \
+docker rm -f events-script
 ```
 
 ## 查看执行日志
@@ -46,3 +56,10 @@ command='sleep 2 && docker exec -i nginx nginx -t && docker exec -i nginx nginx 
 3、***args***是docker events的命令参数  
 4、***command***是事件触发时只需的脚本，可以使用docker命令，多个命令用&&  
 5、如果是一个容器重新创建，就需要sleep等待容器能联通后在重启nginx  
+
+
+
+
+
+# 其他
+1、如果出现无法重启的问题，请即使去github的[issues](https://github.com/aogg/docker-events-script/issues)反馈
