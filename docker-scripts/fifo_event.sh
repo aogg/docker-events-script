@@ -7,6 +7,7 @@
 command=$3
 function fifo_read (){
     read one_line < "$1";
+    date "+%Y-%m-%d %H:%M:%S";
     echo 'eval '$command;
     eval $command
     sleep 1;
