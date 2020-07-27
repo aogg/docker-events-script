@@ -9,7 +9,7 @@ function fifo_read (){
     read one_line < "$1";
     date "+%Y-%m-%d %H:%M:%S";
     echo 'eval '$command;
-    eval $command
+    eval $command || echo '执行命令';
     sleep 1;
     fifo_read $1 &
 }
