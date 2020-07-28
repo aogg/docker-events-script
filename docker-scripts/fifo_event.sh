@@ -10,13 +10,18 @@ function fifo_read (){
     date "+%Y-%m-%d %H:%M:%S";
     echo 'eval '$command;
     eval $command || echo '执行命令';
-    sleep 1;
-    fifo_read $1 &
 }
 
 path=/tmp/fifo/$1
 mkdir -p /tmp/fifo
 mkfifo $path
 
-fifo_read $path &
+{
+    while [ 1 ]
+    do
+        fifo_read $path
+        sleep 1
+    done
+} &
+
 eval "docker events $2" >& $path
