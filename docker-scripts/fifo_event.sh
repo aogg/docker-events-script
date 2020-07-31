@@ -8,8 +8,16 @@ command=$3
 function fifo_read (){
     read one_line < "$1";
     date "+%Y-%m-%d %H:%M:%S";
-    echo 'eval '$command;
-    eval $command || echo '执行命令';
+    echo 'bash -c '$command;
+    bash -c "$command" || echo '执行命令';
+    
+    if [[ $? ]]; then
+        # 尝试三次
+        for i in `seq 3`; do
+            sleep 2;
+            bash -c "$command" || echo '执行命令'$i;
+        done 
+    fi
 }
 
 path=/tmp/fifo/$1
